@@ -56,3 +56,50 @@
 2026-03-16 00:21:34,157 [36mINFO[0m factory.orchestrator    model=opus  temperature=0.8
 2026-03-16 00:21:34,158 DEBUG    factory.agent_runner  Calling claude-opus-4-6 (streaming) …
 2026-03-16 00:21:34,552 [31mERROR[0m factory.agent_runner  API error 400: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CZ63HRuwpSr3Y3MxiEAMR'}
+2026-03-16 00:25:09,630 [36mINFO[0m factory.orchestrator  ============================================================
+2026-03-16 00:25:09,630 [36mINFO[0m factory.orchestrator  PROJECT : project_idea_build_a_modern_web_system_f
+2026-03-16 00:25:09,630 [36mINFO[0m factory.orchestrator  OUTPUT  : C:\Users\Alessandro\OneDrive\Área de Trabalho\Projetos Python\Agents_Django\ai-django-factory\generated\project_idea_build_a_modern_web_system_f
+2026-03-16 00:25:09,631 [36mINFO[0m factory.orchestrator  ============================================================
+2026-03-16 00:25:09,631 DEBUG    factory.memory_manager  Memory 'decisions' updated (4876 chars).
+2026-03-16 00:25:09,631 [36mINFO[0m factory.orchestrator  
+[1/16] Running agent: PRODUCT_MANAGER
+2026-03-16 00:25:09,632 DEBUG    factory.agent_loader  Loaded agent: Product Manager (model=opus)
+2026-03-16 00:25:09,633 DEBUG    factory.token_optimizer  Prompt OK: ~2058 tokens.
+2026-03-16 00:25:09,633 [36mINFO[0m factory.orchestrator    model=opus  temperature=0.8
+2026-03-16 00:25:09,633 DEBUG    factory.agent_runner  Calling claude CLI (model/temperature ignored in CLI mode) …
+2026-03-16 00:25:09,635 [31mERROR[0m factory.agent_runner  'claude' command not found — is Claude Code installed and on PATH?
+2026-03-16 00:27:59,406 [36mINFO[0m factory.orchestrator  ============================================================
+2026-03-16 00:27:59,406 [36mINFO[0m factory.orchestrator  PROJECT : project_idea_build_a_modern_web_system_f
+2026-03-16 00:27:59,407 [36mINFO[0m factory.orchestrator  OUTPUT  : C:\Users\Alessandro\OneDrive\Área de Trabalho\Projetos Python\Agents_Django\ai-django-factory\generated\project_idea_build_a_modern_web_system_f
+2026-03-16 00:27:59,407 [36mINFO[0m factory.orchestrator  ============================================================
+2026-03-16 00:27:59,408 DEBUG    factory.memory_manager  Memory 'decisions' updated (4876 chars).
+2026-03-16 00:27:59,408 [36mINFO[0m factory.orchestrator  
+[1/16] Running agent: PRODUCT_MANAGER
+2026-03-16 00:27:59,409 DEBUG    factory.agent_loader  Loaded agent: Product Manager (model=opus)
+2026-03-16 00:27:59,410 DEBUG    factory.token_optimizer  Prompt OK: ~2058 tokens.
+2026-03-16 00:27:59,410 [36mINFO[0m factory.orchestrator    model=opus  temperature=0.8
+2026-03-16 00:27:59,410 DEBUG    factory.agent_runner  Calling claude CLI (model/temperature ignored in CLI mode) …
+2026-03-16 00:28:02,586 [31mERROR[0m factory.agent_runner  claude CLI error (exit 1): 
+2026-03-16 00:29:23,550 [36mINFO[0m factory.orchestrator  ============================================================
+2026-03-16 00:29:23,551 [36mINFO[0m factory.orchestrator  PROJECT : project_idea_build_a_modern_web_system_f
+2026-03-16 00:29:23,552 [36mINFO[0m factory.orchestrator  OUTPUT  : C:\Users\Alessandro\OneDrive\Área de Trabalho\Projetos Python\Agents_Django\ai-django-factory\generated\project_idea_build_a_modern_web_system_f
+2026-03-16 00:29:23,553 [36mINFO[0m factory.orchestrator  ============================================================
+2026-03-16 00:29:23,554 DEBUG    factory.memory_manager  Memory 'decisions' updated (4876 chars).
+2026-03-16 00:29:23,554 [36mINFO[0m factory.orchestrator  
+[1/16] Running agent: PRODUCT_MANAGER
+2026-03-16 00:29:23,556 DEBUG    factory.agent_loader  Loaded agent: Product Manager (model=opus)
+2026-03-16 00:29:23,557 DEBUG    factory.token_optimizer  Prompt OK: ~2058 tokens.
+2026-03-16 00:29:23,558 [36mINFO[0m factory.orchestrator    model=opus  temperature=0.8
+2026-03-16 00:29:23,558 DEBUG    factory.agent_runner  Calling claude CLI …
+2026-03-16 00:29:25,797 [31mERROR[0m factory.agent_runner  claude CLI error (exit 1): Credit balance is too low
+2026-03-16 00:29:56,108 [36mINFO[0m factory.orchestrator  ============================================================
+2026-03-16 00:29:56,108 [36mINFO[0m factory.orchestrator  PROJECT : project_idea_build_a_modern_web_system_f
+2026-03-16 00:29:56,108 [36mINFO[0m factory.orchestrator  OUTPUT  : C:\Users\Alessandro\OneDrive\Área de Trabalho\Projetos Python\Agents_Django\ai-django-factory\generated\project_idea_build_a_modern_web_system_f
+2026-03-16 00:29:56,108 [36mINFO[0m factory.orchestrator  ============================================================
+2026-03-16 00:29:56,109 DEBUG    factory.memory_manager  Memory 'decisions' updated (4876 chars).
+2026-03-16 00:29:56,109 [36mINFO[0m factory.orchestrator  
+[1/16] Running agent: PRODUCT_MANAGER
+2026-03-16 00:29:56,110 DEBUG    factory.agent_loader  Loaded agent: Product Manager (model=opus)
+2026-03-16 00:29:56,110 DEBUG    factory.token_optimizer  Prompt OK: ~2058 tokens.
+2026-03-16 00:29:56,110 [36mINFO[0m factory.orchestrator    model=opus  temperature=0.8
+2026-03-16 00:29:56,111 DEBUG    factory.agent_runner  Calling claude CLI …

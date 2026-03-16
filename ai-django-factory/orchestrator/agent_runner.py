@@ -7,11 +7,30 @@ Anthropic API, so no API credits are needed — uses your Claude Pro account.
 
 from __future__ import annotations
 
+import os
+import shutil
 import subprocess
+from pathlib import Path
 
 from logs.logger import get_logger
 
 logger = get_logger("agent_runner")
+
+
+def _find_claude() -> str:
+    found = shutil.which("claude")
+    if found:
+        return found
+    for candidate in [
+        Path.home() / ".local" / "bin" / "claude.exe",
+        Path.home() / ".local" / "bin" / "claude",
+    ]:
+        if candidate.exists():
+            return str(candidate)
+    return "claude"
+
+
+CLAUDE_EXE = _find_claude()
 
 
 class AgentRunner:
@@ -20,14 +39,13 @@ class AgentRunner:
 
     Parameters
     ----------
-    max_tokens:
-        Ignored (CLI controls this), kept for interface compatibility.
+    client:
+        Unused — kept for interface compatibility with the old API runner.
     timeout:
         Seconds to wait for the CLI to respond (default: 300).
     """
 
     def __init__(self, client=None, max_tokens: int = 8192, timeout: int = 300) -> None:
-        # `client` accepted but unused — kept so Orchestrator needs no change
         self.timeout = timeout
 
     def run(
@@ -40,49 +58,48 @@ class AgentRunner:
         """
         Call the `claude` CLI and return the full response text.
 
-        The system and user prompts are combined and piped via stdin to avoid
-        OS argument-length limits on long prompts.
-
-        Parameters
-        ----------
-        model:
-            Ignored — the CLI uses whichever model Claude Code defaults to.
-        system:
-            System prompt text.
-        user:
-            User message text.
-        temperature:
-            Ignored — the CLI does not expose this parameter.
-
-        Returns
-        -------
-        str
-            The complete assistant response as a single string.
+        Uses --system-prompt and --tools "" (no tools, no permission prompts).
+        The user prompt is piped via stdin to avoid Windows arg-length limits.
         """
-        full_prompt = f"<system>\n{system}\n</system>\n\n{user}"
+        logger.debug("Calling claude CLI …")
 
-        logger.debug("Calling claude CLI (model/temperature ignored in CLI mode) …")
+        cmd = [
+            CLAUDE_EXE,
+            "--print",
+            "--output-format", "text",
+            "--system-prompt", system,
+            "--tools", "",                  # disable all tools — text-only response
+            "--dangerously-skip-permissions",
+        ]
+
+        # Strip API key so the CLI uses the Pro account (OAuth) instead
+        env = {k: v for k, v in os.environ.items() if k != "ANTHROPIC_API_KEY"}
 
         try:
             result = subprocess.run(
-                ["claude", "-p"],
-                input=full_prompt,
+                cmd,
+                input=user,
                 capture_output=True,
                 text=True,
                 timeout=self.timeout,
+                env=env,
             )
 
             if result.returncode != 0:
-                stderr = result.stderr.strip()
-                logger.error("claude CLI error (exit %d): %s", result.returncode, stderr)
-                raise RuntimeError(f"claude CLI exited with code {result.returncode}: {stderr}")
+                output = (result.stdout + result.stderr).strip()
+                logger.error("claude CLI error (exit %d): %s", result.returncode, output)
+                raise RuntimeError(
+                    f"claude CLI exited with code {result.returncode}: {output}"
+                )
 
             response = result.stdout.strip()
             logger.debug("claude CLI responded with %d chars", len(response))
             return response
 
         except FileNotFoundError:
-            logger.error("'claude' command not found — is Claude Code installed and on PATH?")
+            logger.error(
+                "'claude' not found at %s — is Claude Code installed?", CLAUDE_EXE
+            )
             raise
         except subprocess.TimeoutExpired:
             logger.error("claude CLI timed out after %ds", self.timeout)
