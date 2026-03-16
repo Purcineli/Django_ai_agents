@@ -1,0 +1,23 @@
+A SaaS project management application called "Flowboard" for small and medium software teams.
+
+Core features:
+- Multi-tenant: each company has its own workspace with isolated data
+- Projects: create and manage software projects with descriptions, deadlines, and status
+- Kanban Board: visual board with customisable columns (Backlog, In Progress, Review, Done)
+- Tasks: create tasks with title, description, assignee, priority (Low/Medium/High/Critical), due date, labels
+- Team Management: invite members via email, assign roles (Owner, Admin, Member, Viewer)
+- Comments: threaded comments on tasks with @mentions and markdown support
+- Activity Log: full audit trail of all changes (who, what, when)
+- Notifications: in-app and email notifications for assignments, mentions, and due dates
+- Dashboard: personal dashboard showing assigned tasks, overdue items, and recent activity
+- Search: full-text search across tasks, comments, and projects
+- File Attachments: upload files (images, PDFs, docs) to tasks (max 25MB per file)
+- API: REST API for integrations (webhooks, Zapier)
+- Auth: email/password + Google OAuth
+
+Non-functional requirements:
+- Handle 10,000 concurrent users
+- Page load < 2 seconds
+- 99.9% uptime SLA
+- GDPR compliant
+- Mobile responsive

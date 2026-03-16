@@ -1,0 +1,11 @@
+# AI Django Factory — Requirements
+# Install with: pip install -r requirements.txt
+
+# Anthropic SDK (streaming, tool use, async)
+anthropic>=0.40.0
+
+# YAML frontmatter parsing for agent definitions
+pyyaml>=6.0.2
+
+# Environment variable management
+python-dotenv>=1.0.0
