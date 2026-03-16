@@ -13,8 +13,6 @@ import time
 from pathlib import Path
 from typing import Optional
 
-import anthropic
-
 from orchestrator.agent_loader import AgentLoader
 from orchestrator.agent_runner import AgentRunner
 from orchestrator.artifact_manager import ArtifactManager
@@ -70,14 +68,13 @@ class Orchestrator:
 
         self.pipeline = pipeline or DEFAULT_PIPELINE
 
-        self.client = anthropic.Anthropic()
         self.loader = AgentLoader(ROOT / "agents")
         self.memory = MemoryManager(ROOT / "memory")
         self.artifacts = ArtifactManager(ROOT / "artifacts" / project_name)
         self.selector = ContextSelector()
         self.generator = FileGenerator(self.output_dir)
         self.optimizer = TokenOptimizer()
-        self.runner = AgentRunner(self.client)
+        self.runner = AgentRunner()
 
     # ------------------------------------------------------------------
     # Public API

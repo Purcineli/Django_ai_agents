@@ -1,0 +1,58 @@
+2026-03-16 00:10:18,804 [36mINFO[0m factory.orchestrator  ============================================================
+2026-03-16 00:10:18,805 [36mINFO[0m factory.orchestrator  PROJECT : project_idea_build_a_modern_web_system_f
+2026-03-16 00:10:18,805 [36mINFO[0m factory.orchestrator  OUTPUT  : C:\Users\Alessandro\OneDrive\Área de Trabalho\Projetos Python\Agents_Django\ai-django-factory\generated\project_idea_build_a_modern_web_system_f
+2026-03-16 00:10:18,805 [36mINFO[0m factory.orchestrator  ============================================================
+2026-03-16 00:10:18,808 DEBUG    factory.memory_manager  Memory 'decisions' updated (4876 chars).
+2026-03-16 00:10:18,808 [36mINFO[0m factory.orchestrator  
+[1/16] Running agent: PRODUCT_MANAGER
+2026-03-16 00:10:18,809 DEBUG    factory.agent_loader  Loaded agent: Product Manager (model=opus)
+2026-03-16 00:10:18,810 DEBUG    factory.token_optimizer  Prompt OK: ~2058 tokens.
+2026-03-16 00:10:18,810 [36mINFO[0m factory.orchestrator    model=opus  temperature=0.8
+2026-03-16 00:10:18,810 DEBUG    factory.agent_runner  Calling claude-opus-4-6 (streaming) …
+2026-03-16 00:14:13,988 [36mINFO[0m factory.orchestrator  ============================================================
+2026-03-16 00:14:13,989 [36mINFO[0m factory.orchestrator  PROJECT : project_idea_build_a_modern_web_system_f
+2026-03-16 00:14:13,989 [36mINFO[0m factory.orchestrator  OUTPUT  : C:\Users\Alessandro\OneDrive\Área de Trabalho\Projetos Python\Agents_Django\ai-django-factory\generated\project_idea_build_a_modern_web_system_f
+2026-03-16 00:14:13,990 [36mINFO[0m factory.orchestrator  ============================================================
+2026-03-16 00:14:13,991 DEBUG    factory.memory_manager  Memory 'decisions' updated (4876 chars).
+2026-03-16 00:14:13,991 [36mINFO[0m factory.orchestrator  
+[1/16] Running agent: PRODUCT_MANAGER
+2026-03-16 00:14:13,992 DEBUG    factory.agent_loader  Loaded agent: Product Manager (model=opus)
+2026-03-16 00:14:13,993 DEBUG    factory.token_optimizer  Prompt OK: ~2058 tokens.
+2026-03-16 00:14:13,993 [36mINFO[0m factory.orchestrator    model=opus  temperature=0.8
+2026-03-16 00:14:13,993 DEBUG    factory.agent_runner  Calling claude-opus-4-6 (streaming) …
+2026-03-16 00:16:07,252 [36mINFO[0m factory.orchestrator  ============================================================
+2026-03-16 00:16:07,252 [36mINFO[0m factory.orchestrator  PROJECT : a_modern_web_system_for_project_manageme
+2026-03-16 00:16:07,252 [36mINFO[0m factory.orchestrator  OUTPUT  : C:\Users\Alessandro\OneDrive\Área de Trabalho\Projetos Python\Agents_Django\ai-django-factory\generated\a_modern_web_system_for_project_manageme
+2026-03-16 00:16:07,252 [36mINFO[0m factory.orchestrator  ============================================================
+2026-03-16 00:16:07,253 DEBUG    factory.memory_manager  Memory 'decisions' updated (130 chars).
+2026-03-16 00:16:07,253 [36mINFO[0m factory.orchestrator  
+[1/16] Running agent: PRODUCT_MANAGER
+2026-03-16 00:16:07,254 DEBUG    factory.agent_loader  Loaded agent: Product Manager (model=opus)
+2026-03-16 00:16:07,254 DEBUG    factory.token_optimizer  Prompt OK: ~871 tokens.
+2026-03-16 00:16:07,254 [36mINFO[0m factory.orchestrator    model=opus  temperature=0.8
+2026-03-16 00:16:07,254 DEBUG    factory.agent_runner  Calling claude-opus-4-6 (streaming) …
+2026-03-16 00:16:07,690 [31mERROR[0m factory.agent_runner  API error 400: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CZ62sLLBEEdUtxDrALkbC'}
+2026-03-16 00:20:58,082 [36mINFO[0m factory.orchestrator  ============================================================
+2026-03-16 00:20:58,082 [36mINFO[0m factory.orchestrator  PROJECT : project_idea_build_a_modern_web_system_f
+2026-03-16 00:20:58,083 [36mINFO[0m factory.orchestrator  OUTPUT  : C:\Users\Alessandro\OneDrive\Área de Trabalho\Projetos Python\Agents_Django\ai-django-factory\generated\project_idea_build_a_modern_web_system_f
+2026-03-16 00:20:58,083 [36mINFO[0m factory.orchestrator  ============================================================
+2026-03-16 00:20:58,084 DEBUG    factory.memory_manager  Memory 'decisions' updated (4876 chars).
+2026-03-16 00:20:58,084 [36mINFO[0m factory.orchestrator  
+[1/16] Running agent: PRODUCT_MANAGER
+2026-03-16 00:20:58,085 DEBUG    factory.agent_loader  Loaded agent: Product Manager (model=opus)
+2026-03-16 00:20:58,085 DEBUG    factory.token_optimizer  Prompt OK: ~2058 tokens.
+2026-03-16 00:20:58,085 [36mINFO[0m factory.orchestrator    model=opus  temperature=0.8
+2026-03-16 00:20:58,086 DEBUG    factory.agent_runner  Calling claude-opus-4-6 (streaming) …
+2026-03-16 00:20:58,636 [31mERROR[0m factory.agent_runner  API error 401: Error code: 401 - {'type': 'error', 'error': {'type': 'authentication_error', 'message': 'invalid x-api-key'}, 'request_id': 'req_011CZ63EnUsh7psUVAejjRki'}
+2026-03-16 00:21:34,153 [36mINFO[0m factory.orchestrator  ============================================================
+2026-03-16 00:21:34,154 [36mINFO[0m factory.orchestrator  PROJECT : project_idea_build_a_modern_web_system_f
+2026-03-16 00:21:34,154 [36mINFO[0m factory.orchestrator  OUTPUT  : C:\Users\Alessandro\OneDrive\Área de Trabalho\Projetos Python\Agents_Django\ai-django-factory\generated\project_idea_build_a_modern_web_system_f
+2026-03-16 00:21:34,154 [36mINFO[0m factory.orchestrator  ============================================================
+2026-03-16 00:21:34,155 DEBUG    factory.memory_manager  Memory 'decisions' updated (4876 chars).
+2026-03-16 00:21:34,155 [36mINFO[0m factory.orchestrator  
+[1/16] Running agent: PRODUCT_MANAGER
+2026-03-16 00:21:34,157 DEBUG    factory.agent_loader  Loaded agent: Product Manager (model=opus)
+2026-03-16 00:21:34,157 DEBUG    factory.token_optimizer  Prompt OK: ~2058 tokens.
+2026-03-16 00:21:34,157 [36mINFO[0m factory.orchestrator    model=opus  temperature=0.8
+2026-03-16 00:21:34,158 DEBUG    factory.agent_runner  Calling claude-opus-4-6 (streaming) …
+2026-03-16 00:21:34,552 [31mERROR[0m factory.agent_runner  API error 400: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CZ63HRuwpSr3Y3MxiEAMR'}

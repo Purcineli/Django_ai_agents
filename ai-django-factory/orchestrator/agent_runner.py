@@ -1,45 +1,34 @@
 """
 agent_runner.py
 ---------------
-Thin wrapper around the Anthropic Messages API.
-Supports streaming (default) to avoid timeouts on long outputs.
+Runs agents via the local `claude` CLI (Claude Code) instead of the
+Anthropic API, so no API credits are needed — uses your Claude Pro account.
 """
 
 from __future__ import annotations
 
-import anthropic
+import subprocess
 
 from logs.logger import get_logger
 
 logger = get_logger("agent_runner")
 
-# Map short model aliases to real model IDs
-MODEL_MAP: dict[str, str] = {
-    "opus": "claude-opus-4-6",
-    "sonnet": "claude-sonnet-4-6",
-    "haiku": "claude-haiku-4-5",
-    # allow full IDs to pass through
-    "claude-opus-4-6": "claude-opus-4-6",
-    "claude-sonnet-4-6": "claude-sonnet-4-6",
-    "claude-haiku-4-5": "claude-haiku-4-5",
-}
-
 
 class AgentRunner:
     """
-    Runs a single agent turn via the Anthropic streaming API.
+    Runs a single agent turn by calling `claude -p` as a subprocess.
 
     Parameters
     ----------
-    client:
-        Instantiated ``anthropic.Anthropic`` client.
     max_tokens:
-        Maximum tokens in the response (default: 8192).
+        Ignored (CLI controls this), kept for interface compatibility.
+    timeout:
+        Seconds to wait for the CLI to respond (default: 300).
     """
 
-    def __init__(self, client: anthropic.Anthropic, max_tokens: int = 8192) -> None:
-        self.client = client
-        self.max_tokens = max_tokens
+    def __init__(self, client=None, max_tokens: int = 8192, timeout: int = 300) -> None:
+        # `client` accepted but unused — kept so Orchestrator needs no change
+        self.timeout = timeout
 
     def run(
         self,
@@ -49,51 +38,52 @@ class AgentRunner:
         temperature: float = 0.7,
     ) -> str:
         """
-        Call the API with streaming and return the full response text.
+        Call the `claude` CLI and return the full response text.
+
+        The system and user prompts are combined and piped via stdin to avoid
+        OS argument-length limits on long prompts.
 
         Parameters
         ----------
         model:
-            Short alias ("opus", "sonnet", "haiku") or full model ID.
+            Ignored — the CLI uses whichever model Claude Code defaults to.
         system:
             System prompt text.
         user:
             User message text.
         temperature:
-            Sampling temperature (0.0–1.0).
+            Ignored — the CLI does not expose this parameter.
 
         Returns
         -------
         str
             The complete assistant response as a single string.
         """
-        resolved_model = MODEL_MAP.get(model, model)
+        full_prompt = f"<system>\n{system}\n</system>\n\n{user}"
 
-        logger.debug("Calling %s (streaming) …", resolved_model)
+        logger.debug("Calling claude CLI (model/temperature ignored in CLI mode) …")
 
-        chunks: list[str] = []
         try:
-            with self.client.messages.stream(
-                model=resolved_model,
-                max_tokens=self.max_tokens,
-                temperature=temperature,
-                system=system,
-                messages=[{"role": "user", "content": user}],
-            ) as stream:
-                for text_chunk in stream.text_stream:
-                    chunks.append(text_chunk)
-                    # Optional: real-time progress dots
-                    print(".", end="", flush=True)
+            result = subprocess.run(
+                ["claude", "-p"],
+                input=full_prompt,
+                capture_output=True,
+                text=True,
+                timeout=self.timeout,
+            )
 
-            print()  # newline after dots
-            return "".join(chunks)
+            if result.returncode != 0:
+                stderr = result.stderr.strip()
+                logger.error("claude CLI error (exit %d): %s", result.returncode, stderr)
+                raise RuntimeError(f"claude CLI exited with code {result.returncode}: {stderr}")
 
-        except anthropic.RateLimitError as exc:
-            logger.error("Rate limit hit: %s", exc)
+            response = result.stdout.strip()
+            logger.debug("claude CLI responded with %d chars", len(response))
+            return response
+
+        except FileNotFoundError:
+            logger.error("'claude' command not found — is Claude Code installed and on PATH?")
             raise
-        except anthropic.APIStatusError as exc:
-            logger.error("API error %s: %s", exc.status_code, exc.message)
-            raise
-        except anthropic.APIConnectionError as exc:
-            logger.error("Connection error: %s", exc)
+        except subprocess.TimeoutExpired:
+            logger.error("claude CLI timed out after %ds", self.timeout)
             raise
