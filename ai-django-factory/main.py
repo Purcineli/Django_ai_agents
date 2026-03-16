@@ -23,6 +23,10 @@ import re
 import sys
 from pathlib import Path
 
+# Load environment variables from .env file
+from dotenv import load_dotenv
+load_dotenv()
+
 # Make the package importable when running from the repo root
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
